@@ -28,29 +28,37 @@ def page_candidate(cid):
 @app.route('/list')
 def page_list():
     candidates = get_candidates()
-    list = "<h1> Все кандидаты </h1>"
+    page = "<h1> Все кандидаты </h1>"
     for candidate in candidates:
-        list = list + f"""
+        page = page + f"""
         <p><a href="/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
         """
-    return list
+    return page
 
 @app.route('/search')
 def page_search():
     name = request.args.get("name","")
     candidates = search_candidates(name)
     count_candidate = len(candidates)
-    search = f"<h1>Найдено кандидатов {count_candidate}</h1>"
+    page = f"<h1>Найдено кандидатов {count_candidate}</h1>"
 
     for candidate in candidates:
-        search = search + f"""
+        page = page + f"""
         <p><a href="/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
         """
-    return search
+    return page
 
-@app.route('/skill/<str:skill>')
+@app.route('/skill/<skill>')
 def page_skill(skill):
     candidates = search_in_skills(skill)
+    count_candidate = len(candidates)
+    page = f"<h1>Найдено кандидатов {count_candidate}</h1>"
+    for candidate in candidates:
+        page = page + f"""
+        <p><a href="/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
+        """
+    return page
+
 
 
 

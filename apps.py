@@ -42,7 +42,7 @@ def search_in_skills(skill):
     names = []
     for candidate in candidates:
         if skill.lower() in candidate["skills"].lower():
-            names.append(candidate["name"])
+            names.append(candidate)
     if len(names) > get_setting:
         while len(names) != get_setting:
             names.pop()
