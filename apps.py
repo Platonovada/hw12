@@ -50,5 +50,3 @@ def search_in_skills(skill):
     else:
         return names
 
-
-print(search_in_skills("python"))
